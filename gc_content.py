@@ -37,9 +37,14 @@ def main():
     if len(sys.argv) != 2:
         print(__doc__)
         sys.exit(1)
+    gc_values = []
     for name, seq in read_fasta(sys.argv[1]):
+        gc = gc_content(seq)
+        gc_values.append(gc)
         at = gc_content(seq.translate(str.maketrans("ACGT", "CATG")))
-        print(f"{name}\tLength = {len(seq)}\tGC = {100 * gc_content(seq):.1f}%\tAT = {100 * at:.1f}%")
+        print(f"{name}\tLength = {len(seq)}\tGC = {100 * gc:.1f}%\tAT = {100 * at:.1f}%")
+    mean_gc = sum(gc_values) / len(gc_values) if gc_values else 0.0
+    print(f"Mean GC = {100 * mean_gc:.1f}%")
 
 
 if __name__ == "__main__":
