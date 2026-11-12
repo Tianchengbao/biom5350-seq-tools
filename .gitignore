@@ -1,0 +1,12 @@
+# Jupyter / CoCalc
+.ipynb_checkpoints/
+*.sage-chat
+*.term
+
+# Python
+__pycache__/
+*.pyc
+
+# Outputs — regenerate, don't commit
+results/
+*.log
